@@ -5,7 +5,7 @@ https://twitter.com/Snake_Nikita_
 1. ソフト配布ページにて、右上緑色のCodeボタン→Download Zipをクリック
 2. ダウンロードしたZipファイルを解凍
 3. (旧ソフトを上書き)
-https://github.com/YodaSnake/smamate_mypage_get_data 
+https://github.com/YodaSnake/smamate_mypage_get_data-fork
 
 
 ■最新バージョン
