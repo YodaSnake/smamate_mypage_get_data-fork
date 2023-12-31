@@ -37,16 +37,3 @@
     color: #333; /* テキストの色 */
 }
 
-/* 以下は既存のkeyframesとその他のスタイル */
-@keyframes shine {
-    /* (既存の設定) */
-}
-
-@keyframes poyon {
-    /* (既存の設定) */
-}
-
-@keyframes scrollAnime {
-    0% { transform: translateX(0) }
-    100% { transform: translateX(-1600px) }
-}
