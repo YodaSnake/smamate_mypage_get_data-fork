@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+	
+<head>
+	<meta charset="utf-8">
+	<title>レート表示用</title>
+	<!-- jQueryはJavaScriptのライブラリのこと　その中の"ajax"という非同期通信の機能を利用する-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		//scriptタグ内はjavascript
+		function adjustImageSize() {
+			var fontSize = parseInt($('#current_rate span').css('font-size'), 10); // フォントサイズを取得
+			var adjustedHeight = fontSize + 70; // フォントサイズに20pxを加算
+			$('#characters img').height(adjustedHeight); // 画像の高さをフォントサイズに設定
+		}
+
+		//関数
+		function loadText() {
+			var gettext = $.ajax({
+				url: "output_smamate_mypage_get_data/対戦相手_情報.txt",
+				type: 'GET',
+				dataType: 'text',
+				cache: false
+			});
+
+			gettext.done(function(text){
+				var lines = text.trim().split(/\r?\n/); // 改行で分割
+				var current_rate = lines[0]; // 最初の行はレート
+				var player_name = lines[1]; // 次の行はプレイヤー名
+
+				$('#current_rate span').text(current_rate);
+				$('#player_name span').text(player_name);
+
+				$('#characters').empty(); // ここで既存の画像をクリア
+
+				// キャラ名の処理
+				for (var i = 2; i < lines.length; i++) {
+					var character_name = lines[i];
+					var image_url = characterImageMapping[character_name]; // キャラ名に対応する画像URLを取得
+
+					// キャラ名がマッピングにない場合はデフォルトの画像を使用
+					if (!image_url) {
+						image_url = "Fighter_image/83_hatena.png"; // ここにデフォルト画像のパスを指定
+					}
+					$('#characters').append('<img src="' + image_url + '" alt="' + character_name + '">');
+				}
+				adjustImageSize();
+			});
+
+			gettext.fail(function(error){
+				alert("テキスト読み込み失敗");
+			});
+		}
+
+		var characterImageMapping = {
+			// ここにキャラ名と画像URLのマッピングを定義
+			// 例: "キャラ名1": "images/character1.jpg",
+			//     "キャラ名2": "images/character2.jpg"
+			"mario": "Fighter_image/01_マリオ.png",
+			"donkey_kong": "Fighter_image/02_ドンキー.png",
+			"link": "Fighter_image/03_リンク.png",
+			"samus": "Fighter_image/04_サムス.png",
+			"yoshi": "Fighter_image/05_ヨッシー.png",
+			"kirby": "Fighter_image/06_カービィ.png",
+			"fox": "Fighter_image/07_フォックス.png",
+			"pikachu": "Fighter_image/08_ピカチュウ.png",
+			"luigi": "Fighter_image/09_ルイージ.png",
+			"ness": "Fighter_image/10_ネス.png",
+			"captain_falcon": "Fighter_image/11_ファルコン.png",
+			"jigglypuff": "Fighter_image/12_プリン.png",
+			"peach": "Fighter_image/13_ピーチ.png",
+			"daisy": "Fighter_image/13_ピーチ.png",
+			"bowser": "Fighter_image/14_クッパ.png",
+			"ice_climber": "Fighter_image/15_アイクラ.png",
+			"sheik": "Fighter_image/16_シーク.png",
+			"zelda": "Fighter_image/17_ゼルダ.png",
+			"dr_mario": "Fighter_image/18_ドクマリ.png",
+			"pichu": "Fighter_image/19_ピチュー.png",
+			"falco": "Fighter_image/20_ファルコ.png",
+			"marth": "Fighter_image/21_マルス.png",
+			"lucina": "Fighter_image/22_ルキナ.png",
+			"young_link": "Fighter_image/23_ヤンリン.png",
+			"ganondorf": "Fighter_image/24_ガノン.png",
+			"mewtwo": "Fighter_image/25_ミュウツー.png",
+			"roy": "Fighter_image/26_ロイ.png",
+			"chrom": "Fighter_image/27_クロム.png",
+			"mr_game_and_watch": "Fighter_image/28_ゲッチ.png",
+			"metaknight": "Fighter_image/29_メタナイト.png",
+			"pit": "Fighter_image/30_ピット.png",
+			"dark_pit": "Fighter_image/30_ピット.png",
+			"zero_suit_samus": "Fighter_image/31_ゼロサム.png",
+			"wario": "Fighter_image/32_ワリオ.png",
+			"snake": "Fighter_image/33_スネーク.png",
+			"ike": "Fighter_image/34_アイク.png",
+			"pokemon_trainer": "Fighter_image/35_ポケトレ.png",
+			"diddy_kong": "Fighter_image/36_ディディ.png",
+			"lucas": "Fighter_image/37_リュカ.png",
+			"sonic": "Fighter_image/38_ソニック.png",
+			"king_dedede": "Fighter_image/39_デデデ.png",
+			"olimar": "Fighter_image/40_ピクオリ.png",
+			"lucario": "Fighter_image/41_ルカリオ.png",
+			"rob": "Fighter_image/42_ロボット.png",
+			"toon_link": "Fighter_image/43_トゥーンリンク.png",
+			"wolf": "Fighter_image/44_ウルフ.png",
+			"villager": "Fighter_image/45_むらびと.png",
+			"megaman": "Fighter_image/46_ロックマン.png",
+			"wii_fit_trainer": "Fighter_image/47_フィットレ.png",
+			"rosalina_luma": "Fighter_image/48_ロゼチコ.png",
+			"little_mac": "Fighter_image/49_リトマ.png",
+			"greninja": "Fighter_image/50_ゲッコウガ.png",
+			"mii_brawler": "Fighter_image/51_格闘ミー.png",
+			"mii_swordfighter": "Fighter_image/52_剣術ミー.png",
+			"mii_gunner": "Fighter_image/53_射撃ミー.png",
+			"palutena": "Fighter_image/54_パルテナ.png",
+			"pacman": "Fighter_image/55_パックマン.png",
+			"robin": "Fighter_image/56_ルフレ.png",
+			"shulk": "Fighter_image/57_シュルク.png",
+			"bowser_jr": "Fighter_image/58_パジュニ.png",
+			"duck_hunt": "Fighter_image/59_ダックハント.png",
+			"ryu": "Fighter_image/60_リュウ.png",
+			"ken": "Fighter_image/61_ケン.png",
+			"cloud": "Fighter_image/62_クラウド.png",
+			"corrin": "Fighter_image/63_カムイ.png",
+			"bayonetta": "Fighter_image/64_ベヨネッタ.png",
+			"inkling": "Fighter_image/65_インクリング.png",
+			"ridley": "Fighter_image/66_リドリー.png",
+			"simon": "Fighter_image/67_シモリヒ.png",
+			"richter": "Fighter_image/67_シモリヒ.png",
+			"king_k_rool": "Fighter_image/68_キンクル.png",
+			"isabelle": "Fighter_image/69_しずえ.png",
+			"incineroar": "Fighter_image/70_ガオガエン.png",
+			"piranha_plant": "Fighter_image/71_パックンフラワー.png",
+			"joker": "Fighter_image/72_ジョーカー.png",
+			"hero": "Fighter_image/73_勇者.png",
+			"banjo_and_kazooie": "Fighter_image/74_バンカズ.png",
+			"terry": "Fighter_image/75_テリー.png",
+			"byleth": "Fighter_image/76_ベレトス.png",
+			"minmin": "Fighter_image/77_ミェンミェン.png",
+			"steve": "Fighter_image/78_スティーブ.png",
+			"sephiroth": "Fighter_image/79_セフィロス.png",
+			"homura": "Fighter_image/80_ホムヒカ.png",
+			"kazuya": "Fighter_image/81_カズヤ.png",
+			"sora": "Fighter_image/82_ソラ.png"
+		};
+
+		window.addEventListener('DOMContentLoaded', function() {
+			var roopTimer = setInterval(loadText, 1000);
+		});
+
+	</script>
+	<link rel="stylesheet" href="対戦相手情報.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <div id="current_rate" class="element">
+            <span></span>
+        </div>
+        <div id="player_name" class="element">
+            <span></span>
+        </div>
+        <div id="characters" class="element">
+            <!-- ここにキャラクター画像が追加される -->
+        </div>
+    </div>
+</body>
+
+
+</html>

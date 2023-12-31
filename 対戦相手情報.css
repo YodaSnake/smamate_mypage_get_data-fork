@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+/* 全体のコンテナスタイル */
+.container {
+    display: inline-flex;
+    flex-wrap: nowrap; /* 折り返しなしに設定 */
+    align-items: center;
+    white-space: nowrap;
+    padding: 10px; /* コンテナのパディング */
+    background-color: #f8f8f8; /* コンテナの背景色 */
+    border-radius: 10px; /* 角を丸くする */
+    margin: auto; /* 中央寄せ */
+}
+
+/* 個別の要素（レート、プレイヤー名、キャラクター画像）のスタイル */
+.element {
+    margin-right: 30px; /* 要素間の間隔 */
+    padding: 10px; /* 要素のパディング */
+    /*background-color: #fff;*/ /* 要素の背景色 */
+    /*border: 2px solid #ccc; *//* 要素の枠線 */
+    border-radius: 5px; /* 角を丸くする */
+}
+
+/* レート表示のスタイル */
+#current_rate span {
+    font-family: 'M PLUS 1p', sans-serif;
+    font-size: 120px;
+    font-weight: bolder;
+    color: #333; /* テキストの色 */
+}
+
+/* プレイヤー名表示のスタイル */
+#player_name span {
+    font-family: 'M PLUS 1p', sans-serif;
+    font-size: 100px; /* フォントサイズ */
+    font-weight: bolder;
+    color: #333; /* テキストの色 */
+}
+
+/* 以下は既存のkeyframesとその他のスタイル */
+@keyframes shine {
+    /* (既存の設定) */
+}
+
+@keyframes poyon {
+    /* (既存の設定) */
+}
+
+@keyframes scrollAnime {
+    0% { transform: translateX(0) }
+    100% { transform: translateX(-1600px) }
+}
