@@ -48,7 +48,18 @@
 			});
 
 			gettext.fail(function(error){
-				alert("テキスト読み込み失敗");
+				$('#current_rate span').text("????");
+				$('#player_name span').text("player");
+				$('#characters').empty(); // ここで既存の画像をクリア
+				var character_name = "none"
+				var image_url = characterImageMapping[character_name]; // キャラ名に対応する画像URLを取得
+				// キャラ名がマッピングにない場合はデフォルトの画像を使用
+				if (!image_url) {
+					image_url = "Fighter_image/83_hatena.png"; // ここにデフォルト画像のパスを指定
+				}
+				$('#characters').append('<img src="' + image_url + '" alt="' + character_name + '">');
+				adjustImageSize();
+				//alert("テキスト読み込み失敗");
 			});
 		}
 
