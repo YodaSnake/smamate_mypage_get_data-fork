@@ -78,7 +78,7 @@ Windows11 64bit
 
 
 ■使い方
-1.smamate_mypage_get_data.exeを実行してください。警告ウィンドウが出た場合、｢OK｣や｢詳細情報｣→｢実行｣などを押して実行してください。
+1.smamate_mypage_get_data-fork.exeを実行してください。警告ウィンドウが出た場合、｢OK｣や｢詳細情報｣→｢実行｣などを押して実行してください。
 
 2.前回の記録が見つからない場合、URL入力ウィンドウが出ます。マイページURLを入力してOKを押してください。
 
@@ -99,9 +99,12 @@ Windows11 64bit
 ■ライセンス
 smamate_mypage_get_data
 Copyright (C) 2022 ほーずき(ver1.00-1.04)、YON(ver2.00-2.12)
+smamate_mypage_get_data-fork
 Copyright (C) 2023 YodaSnake(ver2.13)
+Copyright (C) 2024 YodaSnake(ver2.14)
 
-smamate_mypage_get_data.exe(以下｢本ソフトウェア｣といいます)の無償使用を許可します。
+
+smamate_mypage_get_data-fork.exe(以下｢本ソフトウェア｣といいます)の無償使用を許可します。
 本ソフトウェアは、のちょう氏(スマメイト運営、Twitter:@noticoco)、任天堂株式会社および他関連企業の著作物ではありません。
 本ソフトウェアに起因または関連し、あるいは本ソフトウェアの使用またはその他の扱いによって生じる一切の請求、損害、その他の義務について、作者または著作権者は何らの責任も負わないものとします。
 
