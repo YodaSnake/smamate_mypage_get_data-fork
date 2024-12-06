@@ -16,17 +16,36 @@
 .element {
     margin-right: 30px; /* 要素間の間隔 */
     padding: 10px; /* 要素のパディング */
-    /*background-color: #fff;*/ /* 要素の背景色 */
-    /*border: 2px solid #ccc; *//* 要素の枠線 */
     border-radius: 5px; /* 角を丸くする */
 }
 
 /* レート表示のスタイル */
-#current_rate span {
+#current_rate {
+    position: relative;
+}
+
+/* レート表示のスタイル */
+#current_rate .rate-value span {
     font-family: 'M PLUS 1p', sans-serif;
     font-size: 120px;
     font-weight: bolder;
     color: #333; /* テキストの色 */
+    display: block;
+    margin-bottom: 50px; /* 下方向の余白を調整 */
+}
+
+/* 最高レート表示のスタイル */
+#current_rate .highest-rate {
+    position: absolute;
+    right: 15px; /* 右端に揃える */
+    bottom: -20px; /* current_rateの下に配置 */
+}
+
+#current_rate .highest-rate span {
+    font-family: 'M PLUS 1p', sans-serif;
+    font-size: 85px; /* 「対戦相手のレート」より小さいフォントサイズ */
+    font-weight: bolder;
+    color: rgb(220, 38, 54); /* テキストの色を赤に設定 */
 }
 
 /* プレイヤー名表示のスタイル */
@@ -36,4 +55,3 @@
     font-weight: bolder;
     color: #333; /* テキストの色 */
 }
-
