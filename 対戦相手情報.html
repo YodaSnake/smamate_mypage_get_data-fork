@@ -21,21 +21,23 @@
 				type: 'GET',
 				dataType: 'text',
 				cache: false
-			});
-
-			gettext.done(function(text){
+			}).done(function(text){
 				var lines = text.trim().split(/\r?\n/); // 改行で分割
-				var current_rate = lines[0]; // 最初の行はレート
-				var player_name = lines[1]; // 次の行はプレイヤー名
 
-				$('#current_rate span').text(current_rate);
+				// 各データの読み込み
+				var current_rate = lines[0]; // 最初の行は現在レート
+				var player_name = lines[1]; // 次の行はプレイヤー名
+				var characters = lines.slice(2);// キャラクター名のリスト（4行目以降がキャラクター名）
+
+
+				$('#current_rate .rate-value span').text(current_rate);
 				$('#player_name span').text(player_name);
 
 				$('#characters').empty(); // ここで既存の画像をクリア
 
 				// キャラ名の処理
-				for (var i = 2; i < lines.length; i++) {
-					var character_name = lines[i];
+				for (var i = 0; i < characters.length; i++) {
+					var character_name = characters[i];
 					var image_url = characterImageMapping[character_name]; // キャラ名に対応する画像URLを取得
 
 					// キャラ名がマッピングにない場合はデフォルトの画像を使用
@@ -45,10 +47,8 @@
 					$('#characters').append('<img src="' + image_url + '" alt="' + character_name + '">');
 				}
 				adjustImageSize();
-			});
-
-			gettext.fail(function(error){
-				$('#current_rate span').text("????");
+			}).fail(function(error){
+        		$('#current_rate .rate-value span').text("????");
 				$('#player_name span').text("player");
 				$('#characters').empty(); // ここで既存の画像をクリア
 				var character_name = "none"
@@ -59,7 +59,18 @@
 				}
 				$('#characters').append('<img src="' + image_url + '" alt="' + character_name + '">');
 				adjustImageSize();
-				//alert("テキスト読み込み失敗");
+			});
+
+			// 最高レートの読み込み
+			var maxRateText = $.ajax({
+				url: "output_smamate_mypage_get_data/対戦相手_最高レート.txt",
+				type: 'GET',
+				dataType: 'text',
+				cache: false
+			}).done(function(max_text) {
+				$('#current_rate .highest-rate span').text("▲" + max_text.trim());
+			}).fail(function() {
+        		$('#current_rate .highest-rate span').text("N/A");
 			});
 		}
 
@@ -167,7 +178,8 @@
 <body>
     <div class="container">
         <div id="current_rate" class="element">
-            <span></span>
+            <div class="rate-value"><span></span></div>
+            <div class="highest-rate"><span></span></div>
         </div>
         <div id="player_name" class="element">
             <span></span>
