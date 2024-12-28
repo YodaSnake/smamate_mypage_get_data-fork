@@ -1,3 +1,8 @@
+【2024/12/28 追記】
+スマメイト30期にて、一時的に仕様変更がありました。
+仕様がもとに戻るまでは本プログラムは機能しません。ご了承ください。
+
+
 ■smamate_mypage_get_data-forkについて
 このプログラムは下記のyoyoyo4氏のリポジトリに追加修正を施したものです。
 https://github.com/yoyoyo4/smamate_mypage_get_data
